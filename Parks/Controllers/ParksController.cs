@@ -21,6 +21,9 @@ namespace Parks.Controllers
     /// <summary>
     /// Get a list of all parks
     /// </summary>
+    /// <param name="name" example="Yosemite">Query an exact name match to return a specific park</param>
+    /// <param name="statePark">Query "true" to return all parks that are State Parks</param>
+    /// <param name="nationalPark">Query "true" to return all parks that are National Parks</param>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, bool statePark, bool nationalPark)
     {

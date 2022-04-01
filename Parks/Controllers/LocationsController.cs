@@ -21,9 +21,9 @@ namespace Locations.Controllers
     /// <summary>
     /// Gets a list of all locations
     /// </summary>
-    /// <param name="mostParks">Query "yes" to organize locations list by number of parks</param>
-    /// <param name="state">Query state abbreviation (ex. CO, OR, CA, etc.) to return a specific location</param>
-    /// <param name="minParks">Query an integer to get a list of locations with that minimum number of parks</param>
+    /// <param name="mostParks" example="yes">Query "yes" to organize locations list by number of parks</param>
+    /// <param name="state" example="OR">Query state abbreviation (ex. CO, OR, CA, etc.) to return a specific location</param>
+    /// <param name="minParks" example ="3">Query an integer to get a list of locations with that minimum number of parks</param>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Location>>> Get(string mostParks, string state, int minParks)
     {

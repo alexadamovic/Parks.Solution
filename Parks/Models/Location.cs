@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Parks.Models
 {
@@ -9,6 +10,7 @@ namespace Parks.Models
       this.Parks = new HashSet<Park>();
     }
     public int LocationId { get; set; }
+    [Required]
     public string State { get; set; }
     public virtual ICollection<Park> Parks { get; set; }
 
