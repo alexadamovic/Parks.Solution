@@ -20,9 +20,26 @@ namespace Parks.Controllers
 
     // GET api/parks
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get()
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string name, bool statePark, bool nationalPark)
     {
-      return await _db.Parks.ToListAsync();
+      IQueryable<Park> query = _db.Parks.AsQueryable();
+
+      if (name != null)
+      {
+        query = query.Where(a => a.Name == name);
+      }
+
+      if (statePark == true)
+      {
+        query = query.Where(a => a.IsStatePark == true);
+      }
+
+      if (nationalPark == true)
+      {
+        query = query.Where(a => a.IsNationalPark == true);
+      }
+
+      return await query.ToListAsync();
     }
 
     // POST api/parks
