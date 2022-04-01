@@ -1,6 +1,6 @@
 using System;
 
-namespace Parks.Solution
+namespace Parks
 {
     public class WeatherForecast
     {

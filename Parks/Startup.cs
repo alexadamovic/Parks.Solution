@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +7,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Parks.Models;
 
-namespace Parks.Solution
+namespace Parks
 {
     public class Startup
     {
@@ -27,7 +26,7 @@ namespace Parks.Solution
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Parks.Solution", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Parks", Version = "v1" });
             });
         }
 
@@ -38,7 +37,7 @@ namespace Parks.Solution
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Parks.Solution v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Parks v1"));
             }
 
             // app.UseHttpsRedirection();
