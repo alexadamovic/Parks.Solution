@@ -18,7 +18,12 @@ namespace Locations.Controllers
       _db = db;
     }
 
-    // GET api/locations
+    /// <summary>
+    /// Gets a list of all locations
+    /// </summary>
+    /// <param name="mostParks">Query "yes" to organize locations list by number of parks</param>
+    /// <param name="state">Query state abbreviation (ex. CO, OR, CA, etc.) to return a specific location</param>
+    /// <param name="minParks">Query an integer to get a list of locations with that minimum number of parks</param>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Location>>> Get(string mostParks, string state, int minParks)
     {
@@ -44,7 +49,9 @@ namespace Locations.Controllers
       return await query.ToListAsync();
     }
 
-    // POST api/locations
+    /// <summary>
+    /// Add a new location
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<Location>> Post(Location location)
     {
@@ -54,7 +61,9 @@ namespace Locations.Controllers
       return CreatedAtAction(nameof(GetLocation), new { id = location.LocationId }, location);
     }
 
-    // GET: api/Locations/5
+    /// <summary>
+    /// Find a location by ID
+    /// </summary>
     [HttpGet("{id}")]
     public async Task<ActionResult<Location>> GetLocation(int id)
     {
@@ -68,7 +77,9 @@ namespace Locations.Controllers
         return location;
     }
     
-    // PUT: api/Locations/5
+    /// <summary>
+    /// Update an existing location
+    /// </summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, Location location)
     {
@@ -98,7 +109,9 @@ namespace Locations.Controllers
       return NoContent();
     }
 
-    // DELETE: api/Locations/5
+    /// <summary>
+    /// Delete a location
+    /// </summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteLocation(int id)
     {

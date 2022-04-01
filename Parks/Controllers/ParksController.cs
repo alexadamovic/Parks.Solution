@@ -18,7 +18,9 @@ namespace Parks.Controllers
       _db = db;
     }
 
-    // GET api/parks
+    /// <summary>
+    /// Get a list of all parks
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, bool statePark, bool nationalPark)
     {
@@ -42,7 +44,9 @@ namespace Parks.Controllers
       return await query.ToListAsync();
     }
 
-    // POST api/parks
+    /// <summary>
+    /// Add a new park
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
     {
@@ -52,7 +56,9 @@ namespace Parks.Controllers
       return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);
     }
 
-    // GET: api/Parks/5
+    /// <summary>
+    /// Find a park by ID
+    /// </summary>
     [HttpGet("{id}")]
     public async Task<ActionResult<Park>> GetPark(int id)
     {
@@ -66,7 +72,9 @@ namespace Parks.Controllers
         return park;
     }
     
-    // PUT: api/Parks/5
+    /// <summary>
+    /// Edit an existing park
+    /// </summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, Park park)
     {
@@ -96,7 +104,9 @@ namespace Parks.Controllers
       return NoContent();
     }
 
-    // DELETE: api/Parks/5
+    /// <summary>
+    /// Delete a park
+    /// </summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePark(int id)
     {
