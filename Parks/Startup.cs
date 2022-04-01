@@ -26,7 +26,12 @@ namespace Parks
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Parks", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "State & National Park Lookup", 
+                    Version = "v1",
+                    Description = "This API was designed in C# with ASP.NET Core, Entity, and MySQL database support. Styled as a State & National Park lookup utility, users are able to access multiple endpoints related to both Location and Park models, which are connected in a one-to-many database relationship. This API is designed to showcase RESTful routing with full CRUD functionality for both classes."
+                });
             });
         }
 
