@@ -20,11 +20,26 @@ namespace Locations.Controllers
 
     // GET api/locations
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Location>>> Get()
+    public async Task<ActionResult<IEnumerable<Location>>> Get(string mostParks, string state, int minParks)
     {
       var query = _db.Locations
         .Include(a => a.Parks)
         .AsQueryable();
+
+      if (mostParks == "yes")
+      {
+        query = query.OrderByDescending(a => a.Parks.Count());
+      }
+
+      if (state != null)
+      {
+        query = query.Where(a => a.State == state);
+      }
+
+      if (minParks > 0)
+      {
+        query = query.Where(a => a.Parks.Count() >= minParks);
+      }
 
       return await query.ToListAsync();
     }
