@@ -22,18 +22,19 @@ _This C# API acts as a utility to interact with a database of State and National
 
 ### Endpoints
 
-|           Page Name          |                                  Description                                       | 
-| :--------------------------: | :--------------------------------------------------------------------------------: |
-| Quotes  | A quote generator that utilizes the [ProgrammingQuotesApi](https://programming-quotes-api.herokuapp.com/index.html) to relay quotes from famous programmers with a humorous banana themed twist |
-| Jokes | Call a random banana joke from the [wowthatsbig](https://wowthatsbig.net/) API |
-| Facts | Display a random banana fact. Fact: All of the facts are true facts |
-| Conversion | Users are able to enter a unit of measurement, a number of units, and then convert that measurment to its equivalent size or volume in bananas. Users are also treated to the banana equivalent of a random item called from the [wowthatsbig](https://wowthatsbig.net/) API when they submit |
-| BPH  | Convert a speed in miles per hour to bananas per hour  |
-| TicTacBanana | Play a friendly game of "tic tac toe" locally on your device. Banana vs. Kiwi. Who will win??? |
-| Jump Game | Jump over the kiwi as many times as you can. Test your high score! |
-| CLB | Play rock (coconut), paper (leaf), scissors (banana) against the computer |
-| Pong Banana | How much time do you have to waste? We dare you to try to beat our AI in a game of banana pong |
-| Meet the Kingz | Get to know the team behind bananakingz.net! |
+|   Request | URL  |  Description  | 
+| :----------: | :------------------------: | :----------------------------: |
+| GET | localhost:5000/api/parks  | Returns a list of all parks |
+| GET | localhost:5000/api/parks/{id} | Returns a park with the specified int {id} |
+| GET | localhost:5000/api/parks?name={name} | Returns a park with the exact match for string {name} |
+| GET | localhost:5000/api/parks?statePark=true | Returns a list of State parks (bool set to false unless specified true) |
+| GET | localhost:5000/api/parks?nationalPark=true | Returns a list of National parks (bool set to false unless specified true) |
+| GET | localhost:5000/api/locations  | Returns a list of all locations |
+| GET | localhost:5000/api/locations/{id}  | Returns a location with the specified int {id} |
+| GET | localhost:5000/api/locations?state={state}  | Returns a location with the exact match for string {state} |
+| GET | localhost:5000/api/locations?mostParks=yes  | Returns a descending list of locations by the number of parks associated with each location (must be set to string {yes}) |
+| GET | localhost:5000/api/locations?minParks={int}  | Returns a list of all locations with at least int {int} number of parks associated with each location |
+| POST | localhost:5000/api/parks  | Add a new park |
 
 ## Setup/Installation Requirements
 
