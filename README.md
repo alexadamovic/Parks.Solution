@@ -7,7 +7,6 @@
 ## Technologies Used
 
 * _C#_
-* _HTML_
 * _MySQL_
 
 ### Dependencies
@@ -18,9 +17,9 @@
 
 ## Description
 
-_This C# API acts as a utility to interact with a database of State and National parks, utilizing a MySQL database that connects ```locations``` and ```parks``` tables in a One-To-Many relationship. The user is able to query the API at multiple endpoints to return lists or singular instances of ```Park``` or ```Location``` objects according to several queryable parameters (see table below). The API follows RESTful standards, and the user is given full CRUD access to both classes. Swagger documentation is included and is accessible via the browser when running the application._
+_This C# API serves as a utility to interact with a database of State and National parks, utilizing a MySQL database that connects ```locations``` and ```parks``` tables in a One-To-Many relationship. The user is able to query the API at multiple endpoints to return lists or singular instances of ```Park``` or ```Location``` objects according to several queryable parameters (see table below). The API follows RESTful standards, and the user is given full CRUD access to both classes. Swagger documentation is included and is accessible via the browser when running the application._
 
-### Endpoints
+## Endpoints
 
 |   Request | URL  |  Description  | 
 | :----------: | :------------------------: | :----------------------------: |
@@ -35,6 +34,41 @@ _This C# API acts as a utility to interact with a database of State and National
 | GET | localhost:5000/api/locations?mostParks=yes  | Returns a descending list of locations by the number of parks associated with each location (must be set to string {yes}) |
 | GET | localhost:5000/api/locations?minParks={int}  | Returns a list of all locations with at least int {int} number of parks associated with each location |
 | POST | localhost:5000/api/parks  | Add a new park |
+| POST | localhost:5000/api/locations  | Add a new location |
+| PUT | localhost:5000/api/parks/{id}  | Update an existing park with the specified int {id} |
+| PUT | localhost:5000/api/locations/{id}  | Update an existing location with the specified int {id} |
+| DELETE | localhost:5000/api/parks/{id}  | Delete a park with the specified int {id} |
+| DELETE | localhost:5000/api/locations/{id}  | Delete a location with the specified int {id} |
+
+### Example Values
+
+#### Location
+```
+{
+  "locationId": 0,
+  "state": "string",
+  "parks": [
+    {
+      "parkId": 0,
+      "name": "string",
+      "isStatePark": true,
+      "isNationalPark": true,
+      "locationId": 0
+    }
+  ]
+}
+```
+
+#### Park
+```
+{
+  "parkId": 0,
+  "name": "string",
+  "isStatePark": true,
+  "isNationalPark": true,
+  "locationId": 0
+}
+```
 
 ## Setup/Installation Requirements
 
@@ -45,18 +79,26 @@ _This C# API acts as a utility to interact with a database of State and National
 
 #### To Set Up Project With Dependencies
 
-* _clone repository from https://github.com/wcjameson/RecipeBox_
+* _clone repository from https://github.com/alexadamovic/Parks.Solution_
 * _navigate to the project directory in your terminal/command line_
 * _navigate to the subdirectory Factory and enter ```dotnet restore``` to install project dependencies_
 
 #### To Create appsettings.json
 
-* _navigate to the subdirectory Factory and create the file ```appsettings.json```_
+* _navigate to the subdirectory Parks and create the file ```appsettings.json```_
 * _add the following code:_
 ```
 {
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "AllowedHosts": "*",
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=[YOUR_DATABASE];uid=[YOUR_USER_ID];pwd=[YOUR_PASSWORD];"
+    "DefaultConnection": "Server=localhost;Port=3306;database=[YOUR_DATABASE];uid=[YOUR_ID];pwd=[YOUR_PASSWORD];"
   }
 }
 ```
@@ -65,15 +107,22 @@ _This C# API acts as a utility to interact with a database of State and National
 #### To Create Database using Migrations
 
 * _navigate to the project directory in your terminal/command line_
-* _navigate to the subdirectory Factory and enter ```dotnet ef database update``` to create a new local database for the project_
+* _navigate to the subdirectory Parks and enter ```dotnet ef database update``` to create a new local database for the project_
 * _the database will take the name specified in your ```appsettings.json``` file and can be viewed using MySQL_
 
-#### To Run the Web Application
+#### To Run the API
 
-* _navigate to the subdirectory Factory and enter ```dotnet run``` for a snapshot server or ```dotnet watch run``` for a live updating server for the application_
-* _access the server in your browser by entering ```localhost:5000``` into your navigation bar_
-* _click the hyperlinks and submit forms to navigate between the views_
+* _navigate to the subdirectory Parks and enter ```dotnet run``` for a snapshot server or ```dotnet watch run``` for a live updating server_
 * _enter ```ctrl``` + ```c``` for Windows or ```command``` + ```.``` for Mac in your terminal/command line to stop the server_
+* _once running, you can optionally use the utility [Postman](https://www.postman.com/) to interact with the API with full CRUD
+ functionality_
+
+ #### To Access Swagger Documentation (_Further Exploration_)
+
+ * _enter ```https://localhost:5001/swagger/index.html``` or ```http://localhost:5000/swagger/index.html``` into your navigation bar while the application is running_
+ * _click on various GET, POST, DELETE, and PUT endpoints for further information on each_
+ * _use the "Try it out" button to enter specific queries to the database_
+ * _the API will automatically be populated with seed data to explore its features without having to enter any new entries in the database_
 
 ## Known Bugs
 
@@ -84,8 +133,7 @@ _This C# API acts as a utility to interact with a database of State and National
 _MIT License_
 
 Copyright (c) _2022_ _Alex Adamovic_
-Copyright (c) _2022_ _William Jameson_ 
 
 ## Contact Information
 
-alexanderadamovic@gmail.com | williamjameson90@gmail.com
+alexanderadamovic@gmail.com
